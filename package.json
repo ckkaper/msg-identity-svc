@@ -1,7 +1,7 @@
 {
-        "name": "skeleton-svc",
+        "name": "identity",
         "version": "1.0.0",
-        "description": "A skeleton backend microservice based in ExpressJs framework containing boilerplate code for a microservice platform projects",
+        "description": "Works as authorization server using OpenId Connect as authentication protocol",
         "main": "build/src/app.js",
         "scripts": {
                 "test": "mocha -r ts-node/register ./test/src/**/**/*.spec.ts",
