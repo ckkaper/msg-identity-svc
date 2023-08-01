@@ -5,9 +5,7 @@ import Repository from "./repository";
 
 export type UserEntityType = IUserEntity & IEntity;
 
-export class UsersRepository<
-        UserEntityType
-> extends Repository<UserEntityType> {
+export class UsersRepository<UserEntityType> extends Repository<UserEntityType> {
         constructor(strategy: IRepositoryStrategy<UserEntityType>) {
                 super(strategy);
         }

@@ -8,6 +8,7 @@ export const config = {
         dev: {
                 port: process.env.PORT,
                 application_name: process.env.APPLICATION_NAME,
-                mock_data_path: resolve(__dirname, '../../src/repositories/mock_data.json')
+                users_mock_data: resolve(__dirname, '../../src/repositories/users_mock_data.json'),
+                clients_mock_data: resolve(__dirname, '../../src/repositories/clients_mock_data.json')
         },
 };
