@@ -21,12 +21,11 @@ A skeleton microservice part of a bigger microservices platform aiming to seamle
 
 - Have Docker installed
 
-
-## Installation 
+## Installation
 
 Instructions to get ready for the project installation
 
-### Running locally 
+### Running locally
 
 `npm i`
 
@@ -68,4 +67,3 @@ development.
 [mocha](https://www.npmjs.com/package/mocha) Provides basic test suite javascript functionality.
 
 [winston](https://www.npmjs.com/package/winston) famous logging library providing json formated logs
-

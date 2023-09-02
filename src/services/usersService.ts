@@ -1,6 +1,6 @@
 import IUserEntity from "../repositories/Entities/userEntity";
 import { FileStrategy } from "../repositories/strategies/fileStrategy";
-import  { config } from '../config/config';
+import { config } from "../config/config";
 import IRepositoryStrategy from "../repositories/interfaces/IRepositoryStrategy";
 import {
         UsersRepository,
@@ -17,7 +17,7 @@ class UsersService {
         constructor(strategy?: IRepositoryStrategy<IUserEntity>) {
                 this.repositoryStrategy = strategy
                         ? strategy
-                        : new FileStrategy(config.dev.users_mock_data);                        
+                        : new FileStrategy(config.dev.users_mock_data);
                 this.repository = new UsersRepository(this.repositoryStrategy);
         }
 

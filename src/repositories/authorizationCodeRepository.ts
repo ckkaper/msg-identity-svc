@@ -1,18 +1,21 @@
 import IEntity from "./Entities/entity";
 import IClientEntity from "./Entities/clientEntity";
+import IAuthorizationCodeEntity from "./Entities/authorizationCodeEntity";
 import IRepositoryStrategy from "./interfaces/IRepositoryStrategy";
 import Repository from "./repository";
 
-export type ClientEntityType = IClientEntity & IEntity;
+export type AuthorizationCodeEntityType = IAuthorizationCodeEntity & IEntity;
 
 export class ClientsRepository<
-        ClientEntityType
-> extends Repository<ClientEntityType> {
-        constructor(strategy: IRepositoryStrategy<ClientEntityType>) {
+        AuthorizationCodeEntityType
+> extends Repository<AuthorizationCodeEntityType> {
+        constructor(
+                strategy: IRepositoryStrategy<AuthorizationCodeEntityType>
+        ) {
                 super(strategy);
         }
 
-        public getClientById(clientId: string): ClientEntityType {
+        public getClientById(clientId: string): AuthorizationCodeEntityType {
                 return this.strategy.get(clientId);
         }
 
