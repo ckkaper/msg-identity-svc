@@ -2,8 +2,12 @@ import { logger } from "../config/logger";
 import { Response, Request, NextFunction } from "express";
 import { IApiError } from "../utils/apiError";
 
-const errorHandler = (err: IApiError, _: Request, res: Response, next: NextFunction) => {
-        logger.info("inside error middleware");
+const errorHandler = (
+        err: IApiError,
+        _: Request,
+        res: Response,
+        next: NextFunction
+) => {
         const { statusCode, message } = err;
         
         const statusCodeGen = statusCode || 500; 
@@ -12,6 +16,6 @@ const errorHandler = (err: IApiError, _: Request, res: Response, next: NextFunct
 
         logger.error(err);
 
-        res.status(500).send({error: 'something broke!'});
+        res.status(statusCode).send(message);
 };
 export default errorHandler;
