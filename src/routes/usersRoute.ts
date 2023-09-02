@@ -13,8 +13,6 @@ usersRouter.get("/users", (_, res) => {
 usersRouter.get("/users/:id", (req, res) => {
         const userId = req.params.id.toString();
 
-
-        
         if (userId == null) {
                 logger.error("Controller: getUsers(): BadRequest");
                 res.sendStatus(400);

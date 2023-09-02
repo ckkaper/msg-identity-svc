@@ -1,8 +1,11 @@
 import { FileStrategy } from "../repositories/strategies/fileStrategy";
-import  { config } from '../config/config';
+import { config } from "../config/config";
 import IRepositoryStrategy from "../repositories/interfaces/IRepositoryStrategy";
 import { logger } from "../config/logger";
-import { ClientEntityType, ClientsRepository } from "../repositories/clientsRepository";
+import {
+        ClientEntityType,
+        ClientsRepository,
+} from "../repositories/clientsRepository";
 import IClientEntity from "repositories/Entities/clientEntity";
 
 class ClientsService {
@@ -13,8 +16,10 @@ class ClientsService {
         constructor(strategy?: IRepositoryStrategy<IClientEntity>) {
                 this.repositoryStrategy = strategy
                         ? strategy
-                        : new FileStrategy(config.dev.clients_mock_data);                        
-                this.repository = new ClientsRepository(this.repositoryStrategy);
+                        : new FileStrategy(config.dev.clients_mock_data);
+                this.repository = new ClientsRepository(
+                        this.repositoryStrategy
+                );
         }
 
         public getClient(id: string): IClientEntity {
@@ -28,14 +33,13 @@ class ClientsService {
         }
 
         public clientExists(clientId: string): boolean {
-            var requestedClient = this.repository.getClientById(clientId);
-            console.log(requestedClient);
+                var requestedClient = this.repository.getClientById(clientId);
 
-            if (requestedClient != null) {
-                return true;
-            }
+                if (requestedClient != null) {
+                        return true;
+                }
 
-            return false;
+                return false;
         }
 }
 

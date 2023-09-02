@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+        <head>
+                <title>Consent Page</title>
+        </head>
+        <body>
+                <h1>Authorization Request</h1>
+                <p>
+                        The application "<strong>Example App</strong>" would
+                        like to access your profile information.
+                </p>
+                <p>
+                        By clicking the "Authorize" button below, you grant
+                        permission to "<strong>Example App</strong>" to access
+                        the following information:
+                </p>
+                <ul>
+                        <li>
+                                Your basic profile information (e.g., name,
+                                email address).
+                        </li>
+                        <li>Your unique identifier.</li>
+                </ul>
+
+                <h2>Permissions requested by Example App:</h2>
+                <ul>
+                        <li>
+                                <strong>Basic Profile Information:</strong>
+                                Access your name and email address to
+                                personalize your experience.
+                        </li>
+                        <li>
+                                <strong>Unique Identifier:</strong> Access a
+                                unique identifier to recognize you as a user.
+                        </li>
+                </ul>
+
+                <h2>Scope of Access:</h2>
+                <p>Example App requests access to the following scopes:</p>
+                <ul>
+                        <li>
+                                <strong>openid:</strong> Required to
+                                authenticate and obtain a unique identifier.
+                        </li>
+                        <li>
+                                <strong>profile:</strong> Required to access
+                                your basic profile information.
+                        </li>
+                </ul>
+
+                <h2>Data Usage Policy:</h2>
+                <p>
+                        Example App will securely store and handle your
+                        information in accordance with its
+                        <a href="https://www.exampleapp.com/privacy"
+                                >Privacy Policy</a
+                        >.
+                </p>
+
+                <h2>Consent and Authorization</h2>
+                <p>
+                        <strong
+                                >By clicking "Authorize", you grant Example App
+                                permission to access the requested information
+                                on your behalf.</strong
+                        >
+                </p>
+                <form action="/openid/consent" method="post">
+                        <input
+                                type="hidden"
+                                name="response_type"
+                                value="code"
+                        />
+                        <input
+                                type="hidden"
+                                name="client_id"
+                                value="example_client_id"
+                        />
+                        <input
+                                type="hidden"
+                                name="scope"
+                                value="openid profile"
+                        />
+                        <input
+                                type="hidden"
+                                name="redirect_uri"
+                                value="https://www.exampleapp.com/callback"
+                        />
+                        <input type="hidden" name="state" value="xyz123" />
+                        <input type="hidden" name="nonce" value="abc456" />
+                        <input type="submit" value="Authorize" />
+                </form>
+
+                <h2>Consent Withdrawal</h2>
+                <p>
+                        If you wish to revoke this authorization at any time,
+                        you can do so by accessing the application settings in
+                        Example App.
+                </p>
+        </body>
+</html>
