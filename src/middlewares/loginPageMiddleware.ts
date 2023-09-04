@@ -1,8 +1,9 @@
 import { logger } from "../config/logger";
 import path from "path";
 import { Response, Request, NextFunction } from "express";
+// import cryptoRandomStringAsync from "crypto-random-string";
 
-const loginPageMiddleware = (
+const loginPageMiddleware = async (
         req: Request,
         res: Response,
         next: NextFunction
@@ -14,6 +15,8 @@ const loginPageMiddleware = (
         if (username == "user" && password == "password") {
                 console.log("login successful");
                 next();
+
+                // const authorizationCode = await cryptoRandomStringAsync({length: 10, type: 'url-safe'})
 
                 // TODO: construct authorization cocde
                 // construct data access layer for the authorization code

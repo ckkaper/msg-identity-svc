@@ -10,6 +10,7 @@ const checkIfUserIsLoggedIn = (
 
         if (req.cookies.sessionId != null) {
                 // TODO: validate sessionId provide against active sessions
+                // sessionId management will be done by storing a sessionId to the server and a cookie in the browser.
                 res.send("user authenticated");
                 return;
         } else {
