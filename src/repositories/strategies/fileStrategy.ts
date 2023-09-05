@@ -58,13 +58,26 @@ class FileStrategy<T extends Entity> implements IRepositoryStrategy<T> {
         public get(id: string): T {
                 try {
                         logger.info(`data layer: searching for id ${id}`);
+                        console.log(typeof(this.fileJsonData));
                         return this.fileJsonData.find(
-                                (entity: T) => entity.id == id
+                                (entity: T) => { 
+                                    console.log(`FILTER: ${entity.id} vs ${id}`);
+
+                                    if ( entity.id == id ) {
+                                        console.log('STRING COMPARISON MATCHES');
+                                        return true;
+                                    }
+                                        console.log('STRING COMPARISON DONT MATCHES');
+                                        return false;
+                                     }
                         );
+                        
+
                 } catch (err) {
                         logger.error("Failed to get entity");
+                        logger.info(err);
                         throw new InternalServerErrorApiError(
-                                "Unable to find user"
+                                "Internal Server Error"
                         );
                 }
         }

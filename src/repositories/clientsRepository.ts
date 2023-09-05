@@ -12,8 +12,8 @@ export class ClientsRepository<
                 super(strategy);
         }
 
-        public getClientById(clientId: string): ClientEntityType {
-                return this.strategy.get(clientId);
+        public getClientById(id: string): ClientEntityType {
+                return this.strategy.get(id);
         }
 
         public getClientsList() {

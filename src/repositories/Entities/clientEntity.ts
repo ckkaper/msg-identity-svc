@@ -8,6 +8,8 @@ interface IClientEntity extends IEntity {
         secret: string;
 
         created_at: string;
+
+        redirect_uris: string[];
 }
 
 export default IClientEntity;

@@ -22,8 +22,8 @@ class ClientsService {
                 );
         }
 
-        public getClient(id: string): IClientEntity {
-                logger.info(`getting user: ${id}`);
+        public getClientById(id: string): IClientEntity {
+                logger.info(`getting client: ${id}`);
                 return this.repository.getClientById(id);
         }
 

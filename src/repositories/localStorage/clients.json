@@ -1,0 +1,14 @@
+     
+    [
+        {
+                "id": "OKg3URj8JWuYrgQDrk1QIzg==",
+                "name": "client_9781",
+                "api_key": "OKg3URj8JWuYrgQDrk1QIzg==",
+                "secret": "PvAIUSQXgmmPjeyWKp7N2oX==",
+                "created_at": "2023-04-19T03:04:33Z",
+                "redirect_uris": [
+                    "http://localhost:3001",
+                    "http://localhost:3000"
+                ]
+        }
+    ]
