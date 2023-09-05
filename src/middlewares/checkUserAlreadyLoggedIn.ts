@@ -14,7 +14,7 @@ const checkIfUserIsLoggedIn = (
                 res.send("user authenticated");
                 return;
         } else {
-                res.send("user not authenticated");
+                res.redirect("http://localhost:3001/login");
         }
 };
 

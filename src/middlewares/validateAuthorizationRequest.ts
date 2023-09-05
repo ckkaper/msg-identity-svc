@@ -17,6 +17,7 @@ const validateAuthorizationRequest = (
         const validResponseType = validateResponseType(response_type);
         const validClientId = validateClientId(clientId);
         const validScopes = validateScopes(scopes);
+        const validRedirectUri = validateRedirectUri(redirect_uri);
 
         if (validClientId && validResponseType && validScopes) {
                 next();
@@ -33,6 +34,13 @@ function validateResponseType(response_type?: string): boolean {
         }
         logger.error('Not supported response type');
         return false;
+}
+
+
+function validateRedirectUri(redirectUri?: string): boolean {
+    // TODO: validate against client's redirect URIs
+    logger.info(`validating redirectUri: ${redirectUri}`);
+    return true;
 }
 
 function validateClientId(clientId?: string): boolean {
