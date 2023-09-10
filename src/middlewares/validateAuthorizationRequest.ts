@@ -30,8 +30,8 @@ const validateAuthorizationRequest = (
         if (validClientId && validResponseType && validScopes && validRedirectUri) {
                 next();
         } else {
-                logger.error("failed to validate");
-                res.send("not ok");
+                logger.error("failed to validate authorization request");
+                res.send("BadRequest: Invalid authorization request");
         }
 };
 

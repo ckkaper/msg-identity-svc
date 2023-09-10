@@ -6,7 +6,7 @@
         "scripts": {
                 "test": "mocha -r ts-node/register ./test/src/**/**/*.spec.ts",
                 "test:coverage": "nyc mocha -r ts-node/register ./test/src/**/**/*.spec.ts",
-                "build": "tsc --project ./ && mkdir \"./dist/src/repositories/localStorage\" && cp ./src/repositories/localStorage/clients.json ./src/repositories/localStorage/users_mock_data.json ./dist/src/repositories/localStorage/",
+                "build": "tsc --project ./ && mkdir -p \"./dist/src/repositories/localStorage\" && cp ./src/repositories/localStorage/* ./dist/src/repositories/localStorage/",
                 "start": "npx tsc --project ./ && nodemon  ./dist/src/app.js",
                 "start:ts": "ts-node ./src/app.ts",
                 "start:nodemon": "nodemon ./src/app.ts",

@@ -104,6 +104,13 @@
                                 "submit",
                                 function (event) {
                                         event.preventDefault();
+
+                                        const urlParams = new URLSearchParams(window.location.search);
+                                        const clientId = urlParams.get('clientId');
+                                        const redirectUri = urlParams.get('redirect_uri');
+                                        console.log(clientId);
+                                        console.log(redirectUri);
+                                         
                                         const username =
                                                 document.getElementById(
                                                         "username"
@@ -115,7 +122,7 @@
 
                                         $.ajax({
                                                 type: "POST",
-                                                url: "http://localhost:3001/login",
+                                                url: `http://localhost:3001/login?clientId=${clientId}`,
                                                 data: {
                                                         username,
                                                         password,

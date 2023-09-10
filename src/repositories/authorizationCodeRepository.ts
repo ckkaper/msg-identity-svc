@@ -1,25 +1,26 @@
 import IEntity from "./Entities/entity";
-import IClientEntity from "./Entities/clientEntity";
 import IAuthorizationCodeEntity from "./Entities/authorizationCodeEntity";
 import IRepositoryStrategy from "./interfaces/IRepositoryStrategy";
 import Repository from "./repository";
+import { logger } from "../config/logger";
 
 export type AuthorizationCodeEntityType = IAuthorizationCodeEntity & IEntity;
 
-export class ClientsRepository<
+export class AuthorizationCodeRepository<
         AuthorizationCodeEntityType
 > extends Repository<AuthorizationCodeEntityType> {
-        constructor(
-                strategy: IRepositoryStrategy<AuthorizationCodeEntityType>
-        ) {
-                super(strategy);
-        }
+    constructor(
+            strategy: IRepositoryStrategy<AuthorizationCodeEntityType>
+    ) {
+            super(strategy);
+    }
 
-        public getClientById(clientId: string): AuthorizationCodeEntityType {
-                return this.strategy.get(clientId);
-        }
-
-        public getClientsList() {
-                return this.strategy.list();
-        }
+    public getAuthorizationCodeByCode(code: string): AuthorizationCodeEntityType {
+            return this.strategy.get(code);
+    }
+    
+    public addAuthorizationCode(authCodeEntry: AuthorizationCodeEntityType): boolean{
+            logger.info('DATA: storing authorizationcode');
+            return this.strategy.add(authCodeEntry);
+    }
 }

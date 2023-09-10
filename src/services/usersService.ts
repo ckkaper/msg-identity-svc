@@ -7,7 +7,6 @@ import {
         UserEntityType,
 } from "../repositories/usersRepository";
 import { logger } from "../config/logger";
-import path from "path";
 
 class UsersService {
         private repository: UsersRepository<UserEntityType>;

@@ -2,6 +2,7 @@ import { FileStrategy } from "../repositories/strategies/fileStrategy";
 import { config } from "../config/config";
 import IRepositoryStrategy from "../repositories/interfaces/IRepositoryStrategy";
 import { logger } from "../config/logger";
+
 import { SessionEntityType, SessionsRepository } from "../repositories/sessionsRepository";
 import ISessionEntity from "../repositories/Entities/sessionEntity";
 
