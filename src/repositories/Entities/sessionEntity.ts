@@ -1,11 +1,13 @@
 import IEntity from "./entity";
 
 interface ISessionEntity extends IEntity {
-        sessionId: string;
+        session_id: string;
+
+        authorization_code: string;
 
         sub: string;
 
-        createdAt: string
+        created_at: string
 }
 
 export default ISessionEntity;

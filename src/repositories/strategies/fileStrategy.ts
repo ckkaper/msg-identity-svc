@@ -58,12 +58,41 @@ class FileStrategy<T extends Entity> implements IRepositoryStrategy<T> {
         public get(id: string): T {
                 try {
                         logger.info(`data layer: searching for id ${id}`);
-                        console.log(typeof(this.fileJsonData));
                         return this.fileJsonData.find(
                                 (entity: T) => { 
                                     console.log(`FILTER: ${entity.id} vs ${id}`);
 
                                     if ( entity.id == id ) {
+                                        console.log('STRING COMPARISON MATCHES');
+                                        return true;
+                                    }
+                                        console.log('STRING COMPARISON DONT MATCHES');
+                                        return false;
+                                     }
+                        );
+                        
+
+                } catch (err) {
+                        logger.error("Failed to get entity");
+                        logger.info(err);
+                        throw new InternalServerErrorApiError(
+                                "Internal Server Error"
+                        );
+                }
+        }
+        
+        /**
+         * retrieves the entity with the specified id from the file storage
+         * @param {string} id
+         * @returns {T} entity
+         */
+        public getByKey(id: string, key:string): T {
+                try {
+                        logger.info(`data layer: searching for id ${id} in ${key}`);
+                        return this.fileJsonData.find(
+                                (entity: T) => { 
+                                    var entityToCheck = utils.getCustomValue(entity, key)
+                                    if ( entityToCheck == id ) {
                                         console.log('STRING COMPARISON MATCHES');
                                         return true;
                                     }

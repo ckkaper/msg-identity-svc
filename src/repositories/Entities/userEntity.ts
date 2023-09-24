@@ -1,9 +1,15 @@
 import IEntity from "./entity";
 
 interface IUserEntity extends IEntity {
-        firstName: string;
+        sub: string; 
 
-        lastName: string;
+        username: string;
+
+        password: string;
+
+        first_name: string;
+
+        last_name: string;
 }
 
 export default IUserEntity;

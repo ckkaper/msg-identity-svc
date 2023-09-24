@@ -12,6 +12,7 @@ export const config = {
                 users_mock_data: resolve(__dirname, '../../src/repositories/localStorage/users_mock_data.json'),
                 clients_mock_data: resolve(__dirname, '../../src/repositories/localStorage/clients.json'),
                 sessions_mock_data: resolve(__dirname, '../../src/repositories/localStorage/sessions.json'),
-                authorization_code_data: resolve(__dirname, '../../src/repositories/localStorage/authorization_code_data.json')
+                authorization_code_data: resolve(__dirname, '../../src/repositories/localStorage/authorization_code_data.json'),
+                authentication_event_data: resolve(__dirname, '../../src/repositories/localStorage/authentication_event_data.json')
         },
 };

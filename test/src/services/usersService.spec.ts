@@ -8,12 +8,19 @@ import { InternalServerErrorApiError } from "../../../src/utils/apiError";
 
 const mockEntity = {
         id: "someId",
-        firstName: "someFirstName",
-        lastName: "lastName",
+        sub: "someId",
+        username: "someId",
+        password: "someId",
+        first_name: "someFirstName",
+        last_name: "lastName",
 };
 
 class MockStrategy implements IRepositoryStrategy<IUserEntity> {
         constructor() {}
+
+        getByKey(id: string, key: string): IUserEntity{
+            return mockEntity; 
+        }
 
         list(): Array<IUserEntity> {
                 return [mockEntity];
@@ -64,7 +71,7 @@ describe("usersService tests", () => {
         it("shoult get single user", () => {
                 var usersService = new UsersService(mockStrategy);
 
-                var result = usersService.getUser("someId");
+                var result = usersService.getUserByUserName("someId");
 
                 assert.deepEqual(result, mockEntity);
         });
@@ -109,7 +116,7 @@ describe("Negative: usersService tests", () => {
                 var usersService = new UsersService(mockStrategy);
 
                 assert.throws(() => {
-                        usersService.getUser("someID");
+                        usersService.getUserByUserName("someID");
                 });
         });
 

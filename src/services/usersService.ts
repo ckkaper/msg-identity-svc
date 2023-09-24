@@ -20,9 +20,9 @@ class UsersService {
                 this.repository = new UsersRepository(this.repositoryStrategy);
         }
 
-        public getUser(id: string): IUserEntity {
-                logger.info(`getting user: ${id}`);
-                return this.repository.getUser(id);
+        public getUserByUserName(username: string): IUserEntity {
+                logger.info(`getting user: ${username}`);
+                return this.repository.getUserByUserName(username);
         }
 
         public getAllUsers(): Array<IUserEntity> {

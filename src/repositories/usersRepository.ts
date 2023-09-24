@@ -16,7 +16,7 @@ export class UsersRepository<
                 return this.strategy.list();
         }
 
-        public getUser(id: string) {
-                return this.strategy.get(id);
+        public getUserByUserName(username: string): UserEntityType {
+                return this.strategy.getByKey(username, 'username');
         }
 }

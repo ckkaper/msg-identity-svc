@@ -15,3 +15,11 @@ export function writeFile(filePath: string, data: string): void {
         logger.info('STRATEGY:UTILS: writing to file')
         fs.writeFileSync(filePath, data);
 }
+
+export function getCustomValue(obj: any, customKey: string) {
+  if (obj.hasOwnProperty(customKey)) {
+    return obj[customKey];
+  } else {
+    return undefined; // or any other default value you want
+  }
+}

@@ -18,7 +18,7 @@ usersRouter.get("/users/:id", (req, res) => {
                 res.sendStatus(400);
         }
 
-        const users = usersService.getUser(userId);
+        const users = usersService.getUserByUserName(userId);
         res.json(users);
 });
 

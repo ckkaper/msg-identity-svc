@@ -4,6 +4,8 @@ interface IRepositoryStrategy<T> {
         list(): Array<T>;
 
         get(id: string): T;
+        
+        getByKey(id: string, key:string): T;
 
         update(entity: T): T;
 

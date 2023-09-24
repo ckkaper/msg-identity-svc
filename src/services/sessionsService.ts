@@ -21,7 +21,7 @@ class SessionsService {
         }
 
         public getSessionById(id: string): ISessionEntity {
-                logger.info(`getting client: ${id}`);
+                logger.info(`getting session: ${id}`);
                 return this.repository.geetSessionById(id);
         }
 
