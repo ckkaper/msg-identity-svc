@@ -1,7 +1,7 @@
 import { Router } from "express";
-import validateAuthorizationRequest from "../middlewares/validateAuthorizationRequest";
-import checkIfUserIsLoggedIn from "../middlewares/checkUserAlreadyLoggedIn";
-import loginPageMiddleware from "../middlewares/loginPageMiddleware";
+import validateAuthorizationRequest from "../middlewares/auth/validateAuthorizationRequest";
+import checkIfUserIsLoggedIn from "../middlewares/auth/checkUserAlreadyLoggedIn";
+import loginPageMiddleware from "../middlewares/auth/loginPageMiddleware";
 
 const router = Router();
 

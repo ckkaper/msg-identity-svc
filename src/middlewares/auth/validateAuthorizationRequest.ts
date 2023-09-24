@@ -1,6 +1,6 @@
-import { logger } from "../config/logger";
+import { logger } from "../../config/logger";
 import { Response, Request, NextFunction } from "express";
-import ClientsService from "../services/clientsService";
+import ClientsService from "../../services/clientsService";
 
 
 const clientsService = new ClientsService();
@@ -10,17 +10,11 @@ const validateAuthorizationRequest = (
         res: Response,
         next: NextFunction
 ) => {
+        logger.info("VALIDATE AUTHORIZATION REQUEST MIDDLEWARE")
         const response_type = req.query.response_type?.toString();
         const clientId = req.query.client_id?.toString();
         const scopes = req.query.scope?.toString();
         const redirect_uri = req.query.redirect_uri?.toString();
-
-        if (clientId == null || scopes == null || redirect_uri == null || response_type == null) {
-            next();
-        }
-
-
-        console.log(redirect_uri);
 
         const validResponseType = validateResponseType(response_type);
         const validClientId = validateClientId(clientId);

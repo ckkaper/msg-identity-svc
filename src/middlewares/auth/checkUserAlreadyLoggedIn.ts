@@ -1,6 +1,7 @@
-import SessionsService from "../services/sessionsService";
-import { logger } from "../config/logger";
+import SessionsService from "../../services/sessionsService";
+import { logger } from "../../config/logger";
 import { Response, Request, NextFunction } from "express";
+import { config } from "../../config/config";
 
 var sessionsService = new SessionsService();
 
@@ -9,7 +10,7 @@ const checkIfUserIsLoggedIn = (
         res: Response,
         next: NextFunction
 ) => {
-        logger.info("checking if user is logged in");
+        logger.info("CHECK USER IS LOGGED IN MIDDLEWARE");
         var sessionId = req.cookies.sessionId;
         const response_type = req.query.response_type?.toString();
         const clientId = req.query.client_id?.toString();
@@ -27,7 +28,7 @@ const checkIfUserIsLoggedIn = (
         }
         
 
-        res.redirect(`http://localhost:3001/login?clientId=${clientId}`);
+        res.redirect(`http://localhost:${config.dev.port}/login?clientId=${clientId}`);
 };
 
 export default checkIfUserIsLoggedIn;
