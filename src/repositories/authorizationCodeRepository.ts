@@ -9,18 +9,25 @@ export type AuthorizationCodeEntityType = IAuthorizationCodeEntity & IEntity;
 export class AuthorizationCodeRepository<
         AuthorizationCodeEntityType
 > extends Repository<AuthorizationCodeEntityType> {
-    constructor(
-            strategy: IRepositoryStrategy<AuthorizationCodeEntityType>
-    ) {
-            super(strategy);
-    }
+        constructor(
+                strategy: IRepositoryStrategy<AuthorizationCodeEntityType>
+        ) {
+                super(strategy);
+        }
 
-    public getAuthorizationCodeByCode(code: string): AuthorizationCodeEntityType {
-            return this.strategy.get(code);
-    }
-    
-    public addAuthorizationCode(authCodeEntry: AuthorizationCodeEntityType): boolean{
-            logger.info('DATA: storing authorizationcode');
-            return this.strategy.add(authCodeEntry);
-    }
+        public getAuthorizationCodeByCode(
+                code: string
+        ): AuthorizationCodeEntityType {
+                return this.strategy.get(code);
+        }
+
+        public addAuthorizationCode(
+                authCodeEntry: AuthorizationCodeEntityType
+        ): boolean {
+                logger.info("DATA: storing authorizationcode");
+                logger.info(
+                        `AuthorizationCode: ${JSON.stringify(authCodeEntry)}`
+                );
+                return this.strategy.add(authCodeEntry);
+        }
 }

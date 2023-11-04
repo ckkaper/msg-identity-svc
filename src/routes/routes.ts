@@ -3,12 +3,17 @@ import validateAuthorizationRequest from "../middlewares/auth/validateAuthorizat
 import loginPageMiddleware from "../middlewares/auth/loginPageMiddleware";
 import checkIfUserIsLoggedInMiddleware from "../middlewares/auth/checkUserAlreadyLoggedInMiddleware";
 import testMiddleware from "../middlewares/testMiddleware";
+import tokenRequestValidationMiddleware from "../middlewares/auth/tokenRequestValidationMiddleware";
 
 const router = Router();
 
-router.get("/authorize", validateAuthorizationRequest, checkIfUserIsLoggedInMiddleware);
+router.get(
+        "/authorize",
+        validateAuthorizationRequest,
+        checkIfUserIsLoggedInMiddleware
+);
 
-router.get("/token");
+router.post("/token", tokenRequestValidationMiddleware);
 
 router.get("/login", loginPageMiddleware);
 

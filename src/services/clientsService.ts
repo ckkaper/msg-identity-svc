@@ -22,18 +22,20 @@ class ClientsService {
                 );
         }
 
-        public getClientById(id: string): IClientEntity {
+        public async getClientById(id: string): Promise<IClientEntity> {
                 logger.info(`getting client: ${id}`);
                 return this.repository.getClientById(id);
         }
 
-        public getAllClients(): Array<IClientEntity> {
+        public async getAllClients(): Promise<Array<IClientEntity>> {
                 logger.info(`getting all clients`);
-                return this.repository.getClientsList();
+                return await this.repository.getClientsList();
         }
 
-        public clientExists(clientId: string): boolean {
-                var requestedClient = this.repository.getClientById(clientId);
+        public async clientExists(clientId: string): Promise<boolean> {
+                var requestedClient = await this.repository.getClientById(
+                        clientId
+                );
 
                 if (requestedClient != null) {
                         return true;

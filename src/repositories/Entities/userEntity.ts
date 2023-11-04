@@ -1,7 +1,7 @@
 import IEntity from "./entity";
 
 interface IUserEntity extends IEntity {
-        sub: string; 
+        sub: string;
 
         username: string;
 

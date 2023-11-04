@@ -20,24 +20,29 @@ class AuthorizatioNCodeService {
                 );
         }
 
-        public async getAuthorizationCodeByCode(code: string): Promise<IAuthorizationCodeEntity> {
-            logger.info('retrieving authorization code');
-            return this.repository.getAuthorizationCodeByCode(code);
+        public async getAuthorizationCodeByCode(
+                code: string
+        ): Promise<IAuthorizationCodeEntity> {
+                logger.info("retrieving authorization code");
+                return this.repository.getAuthorizationCodeByCode(code);
         }
-        
+
         public async createAuthorizationCode(): Promise<string> {
-            logger.info('generating authorization code');
-            return await generateAuthorizationCode(); 
+                logger.info("generating authorization code");
+                return await generateAuthorizationCode();
         }
-        
-        public async addAuthorizationCode(clientId: string, code: string): Promise<boolean> {
-            logger.info('storing authorization code');
-            return await this.repository.addAuthorizationCode({
-                client_id: clientId,
-                authorization_code: code,
-                created_at: "now",
-                id: code
-            });
+
+        public async addAuthorizationCode(
+                clientId: string,
+                code: string
+        ): Promise<boolean> {
+                logger.info("storing authorization code");
+                return await this.repository.addAuthorizationCode({
+                        client_id: clientId,
+                        authorization_code: code,
+                        created_at: "now",
+                        id: code,
+                });
         }
 }
 

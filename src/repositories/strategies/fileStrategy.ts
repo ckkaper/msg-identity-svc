@@ -26,7 +26,7 @@ class FileStrategy<T extends Entity> implements IRepositoryStrategy<T> {
         public add(entity: T): boolean {
                 try {
                         this.fileJsonData.push(entity);
-                        return this.updateFile();
+                        return this.storeToFile();
                 } catch (err) {
                         logger.error("Unable to add user");
                         throw new InternalServerErrorApiError(
@@ -57,21 +57,22 @@ class FileStrategy<T extends Entity> implements IRepositoryStrategy<T> {
          */
         public get(id: string): T {
                 try {
+                        this.getLatestContents();
                         logger.info(`data layer: searching for id ${id}`);
-                        return this.fileJsonData.find(
-                                (entity: T) => { 
-                                    console.log(`FILTER: ${entity.id} vs ${id}`);
+                        console.log("DATABASE");
+                        console.log(JSON.stringify(this.fileJsonData));
+                        return this.fileJsonData.find((entity: T) => {
+                                console.log(`FILTER: ${entity.id} vs ${id}`);
 
-                                    if ( entity.id == id ) {
-                                        console.log('STRING COMPARISON MATCHES');
+                                if (entity.id == id) {
+                                        console.log(
+                                                "STRING COMPARISON MATCHES"
+                                        );
                                         return true;
-                                    }
-                                        console.log('STRING COMPARISON DONT MATCHES');
-                                        return false;
-                                     }
-                        );
-                        
-
+                                }
+                                console.log("STRING COMPARISON DONT MATCHES");
+                                return false;
+                        });
                 } catch (err) {
                         logger.error("Failed to get entity");
                         logger.info(err);
@@ -80,28 +81,32 @@ class FileStrategy<T extends Entity> implements IRepositoryStrategy<T> {
                         );
                 }
         }
-        
+
         /**
          * retrieves the entity with the specified id from the file storage
          * @param {string} id
          * @returns {T} entity
          */
-        public getByKey(id: string, key:string): T {
+        public getByKey(id: string, key: string): T {
                 try {
-                        logger.info(`data layer: searching for id ${id} in ${key}`);
-                        return this.fileJsonData.find(
-                                (entity: T) => { 
-                                    var entityToCheck = utils.getCustomValue(entity, key)
-                                    if ( entityToCheck == id ) {
-                                        console.log('STRING COMPARISON MATCHES');
-                                        return true;
-                                    }
-                                        console.log('STRING COMPARISON DONT MATCHES');
-                                        return false;
-                                     }
+                        this.getLatestContents();
+                        logger.info(
+                                `data layer: searching for id ${id} in ${key}`
                         );
-                        
-
+                        return this.fileJsonData.find((entity: T) => {
+                                var entityToCheck = utils.getCustomValue(
+                                        entity,
+                                        key
+                                );
+                                if (entityToCheck == id) {
+                                        console.log(
+                                                `${entityToCheck} vs ${id}`
+                                        );
+                                        return true;
+                                }
+                                console.log(`${entityToCheck} vs ${id}`);
+                                return false;
+                        });
                 } catch (err) {
                         logger.error("Failed to get entity");
                         logger.info(err);
@@ -122,7 +127,7 @@ class FileStrategy<T extends Entity> implements IRepositoryStrategy<T> {
                                 (entity: T) => (entity.id = id)
                         );
                         this.fileJsonData.splice(index, 1);
-                        return this.updateFile();
+                        return this.storeToFile();
                 } catch (err) {
                         logger.error("Unable to remove user");
                         throw new InternalServerErrorApiError(
@@ -144,7 +149,7 @@ class FileStrategy<T extends Entity> implements IRepositoryStrategy<T> {
                         );
                         this.fileJsonData.splice(index, 1);
                         this.fileJsonData.push(entity);
-                        this.updateFile();
+                        this.storeToFile();
                         return entity;
                 } catch (err) {
                         logger.error("Unable to update file");
@@ -157,11 +162,31 @@ class FileStrategy<T extends Entity> implements IRepositoryStrategy<T> {
          * with new ones
          * @param newContent
          */
-        private updateFile(): boolean {
+        private storeToFile(): boolean {
                 try {
+                        utils.readJsonFromFile(this.filePath);
                         utils.writeFile(
                                 this.filePath,
                                 JSON.stringify(this.fileJsonData)
+                        );
+                        return true;
+                } catch (err) {
+                        logger.error("Unable to replace file");
+                        throw new InternalServerErrorApiError(
+                                "Unable to remove user"
+                        );
+                }
+        }
+
+        /**
+         * Generic method to replace the previous file contents
+         * with new ones
+         * @param newContent
+         */
+        private getLatestContents(): boolean {
+                try {
+                        this.fileJsonData = utils.readJsonFromFile(
+                                this.filePath
                         );
                         return true;
                 } catch (err) {

@@ -18,8 +18,8 @@ const mockEntity = {
 class MockStrategy implements IRepositoryStrategy<IUserEntity> {
         constructor() {}
 
-        getByKey(id: string, key: string): IUserEntity{
-            return mockEntity; 
+        getByKey(id: string, key: string): IUserEntity {
+                return mockEntity;
         }
 
         list(): Array<IUserEntity> {

@@ -7,7 +7,7 @@ interface ISessionEntity extends IEntity {
 
         sub: string;
 
-        created_at: string
+        created_at: string;
 }
 
 export default ISessionEntity;

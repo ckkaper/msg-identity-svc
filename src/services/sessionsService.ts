@@ -3,7 +3,10 @@ import { config } from "../config/config";
 import IRepositoryStrategy from "../repositories/interfaces/IRepositoryStrategy";
 import { logger } from "../config/logger";
 
-import { SessionEntityType, SessionsRepository } from "../repositories/sessionsRepository";
+import {
+        SessionEntityType,
+        SessionsRepository,
+} from "../repositories/sessionsRepository";
 import ISessionEntity from "../repositories/Entities/sessionEntity";
 
 class SessionsService {
@@ -24,7 +27,6 @@ class SessionsService {
                 logger.info(`getting session: ${id}`);
                 return this.repository.geetSessionById(id);
         }
-
 }
 
 export default SessionsService;

@@ -1,9 +1,8 @@
-     
 [
-    {
-        "id": "kyriakos",
-        "sessionId": "kyriakos",
-        "sub": "kyriakos",
-        "createdAt": "yesterday"
-    }
+        {
+                "id": "kyriakos",
+                "sessionId": "kyriakos",
+                "sub": "kyriakos",
+                "createdAt": "yesterday"
+        }
 ]
