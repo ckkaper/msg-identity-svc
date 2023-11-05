@@ -59,18 +59,11 @@ class FileStrategy<T extends Entity> implements IRepositoryStrategy<T> {
                 try {
                         this.getLatestContents();
                         logger.info(`data layer: searching for id ${id}`);
-                        console.log("DATABASE");
-                        console.log(JSON.stringify(this.fileJsonData));
                         return this.fileJsonData.find((entity: T) => {
-                                console.log(`FILTER: ${entity.id} vs ${id}`);
 
                                 if (entity.id == id) {
-                                        console.log(
-                                                "STRING COMPARISON MATCHES"
-                                        );
                                         return true;
                                 }
-                                console.log("STRING COMPARISON DONT MATCHES");
                                 return false;
                         });
                 } catch (err) {
@@ -99,12 +92,8 @@ class FileStrategy<T extends Entity> implements IRepositoryStrategy<T> {
                                         key
                                 );
                                 if (entityToCheck == id) {
-                                        console.log(
-                                                `${entityToCheck} vs ${id}`
-                                        );
                                         return true;
                                 }
-                                console.log(`${entityToCheck} vs ${id}`);
                                 return false;
                         });
                 } catch (err) {

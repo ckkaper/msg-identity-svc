@@ -9,10 +9,6 @@ class AuthenticationService {
                 username: string,
                 password: string
         ): Promise<boolean> {
-                console.log("=====CREDS PROVIDED =========");
-                console.log(username);
-                console.log(password);
-                console.log("=====END CREDS PROVIDED======");
                 const user = usersService.getUserByUserName(username);
 
                 logger.info(user);

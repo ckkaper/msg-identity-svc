@@ -21,7 +21,7 @@ const tokenRequestValidationMiddleware = async (
         const authorizationCode = req.query?.code;
 
         if (authorizationCode == null) {
-                logger.info("authorization code does not exist");
+                logger.info("authorization code was not provided");
                 next();
                 return;
         }
@@ -64,7 +64,7 @@ const tokenRequestValidationMiddleware = async (
         }
 
         const token = jwt.sign(
-                { foo: "bar" },
+                { sub: registeredAuthorizationCode.id },
                 config.dev.secrets.jwt_token_secret as jwt.Secret
         );
 

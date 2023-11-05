@@ -17,7 +17,6 @@ const loginPageMiddleware = async (
 ) => {
         logger.info("LOGIN PAGE MIDDLEWARE");
         const { username, password } = req.body;
-        console.log(req.body);
         const clientId = req.query.client_id?.toString();
         const redirect_uri = req.query.redirect_uri?.toString();
 

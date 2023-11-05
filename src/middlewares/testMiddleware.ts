@@ -15,13 +15,11 @@ const testMiddleware = async (
         res: Response,
         next: NextFunction
 ) => {
-        console.log("TEST MIDDLEWARE");
 
         const model =
                 await authenticationEventRepository.getAuthenticationEventByAuthorizationCode(
                         "authorization_code_value"
                 );
-        console.log("test middleware");
         res.send(model);
 };
 

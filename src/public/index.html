@@ -112,8 +112,6 @@
                                                 urlParams.get("client_id");
                                         const redirectUri =
                                                 urlParams.get("redirect_uri");
-                                        console.log(clientId);
-                                        console.log(redirectUri);
 
                                         const username =
                                                 document.getElementById(
@@ -132,15 +130,8 @@
                                                         password,
                                                 },
                                                 success: (data) => {
-                                                        console.log(data);
                                                         const authorizationCode =
                                                                 data;
-                                                        console.log(
-                                                                "authorization code"
-                                                        );
-                                                        console.log(
-                                                                authorizationCode
-                                                        );
 
                                                         location.href = `http://localhost:${3000}/auth/callback/?code=${authorizationCode}&redirect_uri=${redirectUri}`;
                                                 },
