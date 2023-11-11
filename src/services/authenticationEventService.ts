@@ -28,7 +28,6 @@ class AuthenticationEventService {
         ) {
                 this.repository.add({
                         authorization_code: authorizationCode,
-                        session_id: "someSessionId",
                         sub: username,
                         created_at: "now",
                         result: true,

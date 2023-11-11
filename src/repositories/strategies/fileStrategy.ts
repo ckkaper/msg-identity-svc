@@ -60,7 +60,6 @@ class FileStrategy<T extends Entity> implements IRepositoryStrategy<T> {
                         this.getLatestContents();
                         logger.info(`data layer: searching for id ${id}`);
                         return this.fileJsonData.find((entity: T) => {
-
                                 if (entity.id == id) {
                                         return true;
                                 }

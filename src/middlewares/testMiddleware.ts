@@ -15,7 +15,6 @@ const testMiddleware = async (
         res: Response,
         next: NextFunction
 ) => {
-
         const model =
                 await authenticationEventRepository.getAuthenticationEventByAuthorizationCode(
                         "authorization_code_value"

@@ -1,5 +1,6 @@
 import IEntity from "./entity";
 
+/** Not used at the moment */
 interface IAuthorizationCodeEntity extends IEntity {
         /**
          * The client issued the code.
