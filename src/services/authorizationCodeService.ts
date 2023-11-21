@@ -4,9 +4,9 @@ import IRepositoryStrategy from "../repositories/interfaces/IRepositoryStrategy"
 import { logger } from "../config/logger";
 import { AuthorizationCodeRepository } from "../repositories/authorizationCodeRepository";
 import IAuthorizationCodeEntity from "../repositories/Entities/authorizationCodeEntity";
-import { generateAuthorizationCode } from "../utils/cryptoUtils";
+import  * as cryptoUtils from "../utils/cryptoUtils";
 
-class AuthorizatioNCodeService {
+class AuthorizationCodeService {
         private repository: AuthorizationCodeRepository<IAuthorizationCodeEntity>;
 
         private repositoryStrategy: IRepositoryStrategy<IAuthorizationCodeEntity>;
@@ -29,7 +29,7 @@ class AuthorizatioNCodeService {
 
         public async createAuthorizationCode(): Promise<string> {
                 logger.info("generating authorization code");
-                return await generateAuthorizationCode();
+                return await cryptoUtils.generateAuthorizationCode();
         }
 
         public async addAuthorizationCode(
@@ -46,4 +46,4 @@ class AuthorizatioNCodeService {
         }
 }
 
-export default AuthorizatioNCodeService;
+export default AuthorizationCodeService;

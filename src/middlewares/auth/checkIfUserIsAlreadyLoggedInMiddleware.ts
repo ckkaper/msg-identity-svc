@@ -1,9 +1,6 @@
-import SessionsService from "../../services/sessionsService";
 import { logger } from "../../config/logger";
 import { Response, Request, NextFunction } from "express";
 import { config } from "../../config/config";
-
-var sessionsService = new SessionsService();
 
 const checkIfUserIsLoggedInMiddleware = (
         req: Request,
@@ -20,14 +17,6 @@ const checkIfUserIsLoggedInMiddleware = (
         if (clientId == null) {
                 res.send("Bad Request: clientId not provided");
         }
-
-        // var requestedSession = sessionsService.getSessionById(sessionId);
-
-        // if (requestedSession != null) {
-        //     logger.info('user authenticated');
-        //     res.send("user authenticated");
-        //     return;
-        // }
 
         res.redirect(
                 `http://localhost:${config.dev.port}/login?client_id=${clientId}&redirect_uri=${redirect_uri}`

@@ -1,7 +1,7 @@
 import { Router } from "express";
 import validateAuthorizationRequest from "../middlewares/auth/validateAuthorizationRequest";
 import loginPageMiddleware from "../middlewares/auth/loginPageMiddleware";
-import checkIfUserIsLoggedInMiddleware from "../middlewares/auth/checkUserAlreadyLoggedInMiddleware";
+import checkIfUserIsLoggedInMiddleware from "../middlewares/auth/checkIfUserIsAlreadyLoggedInMiddleware";
 import testMiddleware from "../middlewares/testMiddleware";
 import tokenRequestValidationMiddleware from "../middlewares/auth/tokenRequestValidationMiddleware";
 

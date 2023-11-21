@@ -29,6 +29,7 @@ const loginPageMiddleware = async (
         logger.info("attempting to authenticate user");
         const authenticationResult =
                 await authenticationService.authenticateUser(
+                        clientId,
                         username,
                         password
                 );
@@ -41,23 +42,8 @@ const loginPageMiddleware = async (
         if (authenticationResult) {
                 logger.info("successfully authenticated user");
 
-                const authorizationCode =
-                        await authorizationCodeService.createAuthorizationCode();
-
-                await authorizationCodeService.addAuthorizationCode(
-                        clientId,
-                        authorizationCode
-                );
-                await authenticationEventService.createAuthenticationEvent(
-                        username,
-                        authorizationCode
-                );
-
                 logger.info("redirecting to RP auth callback");
-                return res.json(authorizationCode);
-                // return res.redirect(
-                //         `http://localhost:${config.dev.relying_party_port}/auth/callback/?code=${authorizationCode}&redirect_uri=${redirect_uri}`
-                // );
+                return res.json(authenticationResult.authorization_code);
         }
 
         res.sendFile(path.resolve("./src/public/index.html"));

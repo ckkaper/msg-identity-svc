@@ -16,6 +16,12 @@ interface IAuthenticationEventEntity extends IEntity {
 
         /** authentication event result, Do we need it?   */
         result: boolean;
+
+        /** username of user */
+        username: string
+
+        /** The clientId of the Relying Party. */
+        clientId: string
 }
 
 export default IAuthenticationEventEntity;

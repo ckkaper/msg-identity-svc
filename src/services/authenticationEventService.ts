@@ -3,6 +3,7 @@ import { config } from "../config/config";
 import IRepositoryStrategy from "../repositories/interfaces/IRepositoryStrategy";
 import IAuthenticationEventEntity from "../repositories/Entities/authenticationEventEntity";
 import { AuthenticationEventRepository } from "../repositories/authenticationEventRepository";
+import { logger } from "../config/logger";
 
 class AuthenticationEventService {
         private repository: AuthenticationEventRepository<IAuthenticationEventEntity>;
@@ -23,24 +24,34 @@ class AuthenticationEventService {
         }
 
         public createAuthenticationEvent(
+                sub: string,
                 username: string,
+                clientId: string,
                 authorizationCode: string
         ) {
+            logger.info(`creating authenticationEvent for user ${username}`)
                 this.repository.add({
                         authorization_code: authorizationCode,
                         sub: username,
-                        created_at: "now",
+                        username,
+                        clientId,
+                        created_at: new Date().getTime().toString(),
                         result: true,
-                        id: username,
+                        id: sub,
                 });
         }
 
-        public getAuthenticationEventByAuthorizationCode(
-                authorizationCode: string
-        ) {
-                this.repository.getAuthenticationEventByAuthorizationCode(
+        public getAuthenticationEventByAuthorizationCode(authorizationCode: string): IAuthenticationEventEntity | null {
+            const authenticationEvent = this.repository.getAuthenticationEventByAuthorizationCode(
                         authorizationCode
                 );
+            
+            if (authenticationEvent == null) {
+                logger.error('No authorization code was found');
+                return null;
+            }
+
+            return authenticationEvent;
         }
 }
 

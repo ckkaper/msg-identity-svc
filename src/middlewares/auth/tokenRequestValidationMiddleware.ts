@@ -1,19 +1,21 @@
 import { logger } from "../../config/logger";
 import { Response, Request, NextFunction } from "express";
 import ClientsService from "../../services/clientsService";
-import AuthorizatioNCodeService from "../../services/authorizationCodeService";
+import AuthenticationEventService from "../../services/authenticationEventService";
 import jwt from "jsonwebtoken";
 import { config } from "../../config/config";
+import TokenService from "../../services/tokenService";
 
 const clientsService = new ClientsService();
-const authCodeService = new AuthorizatioNCodeService();
+const authenticationEventService = new AuthenticationEventService();
+const tokenService = new TokenService();
 
 const tokenRequestValidationMiddleware = async (
         req: Request,
         res: Response,
         next: NextFunction
 ) => {
-        logger.info("VALIDATE TOKEN REQUEST MIDDLEWARE    aaaaaaaaaaaaaa");
+        logger.info("VALIDATE TOKEN REQUEST MIDDLEWARE");
 
         // Client authentication
         const clientId = req.body?.clientId;
@@ -52,22 +54,24 @@ const tokenRequestValidationMiddleware = async (
         }
 
         logger.info(`AUTHORIZATION CODE ${authorizationCode}`);
-        const registeredAuthorizationCode =
-                await authCodeService.getAuthorizationCodeByCode(
-                        authorizationCode.toString()
-                );
 
-        if (registeredAuthorizationCode == null) {
-                logger.info("authorization code not found");
+        const authenticationEvent = await authenticationEventService.
+                                        getAuthenticationEventByAuthorizationCode(authorizationCode.toString());
+
+        if (authenticationEvent == null) {
+                logger.info("authenticationEvent was not found by authorization_code");
                 next();
                 return;
         }
 
+        const tokenData = tokenService.createToken(authenticationEvent)
+
         const token = jwt.sign(
-                { sub: registeredAuthorizationCode.id },
+                tokenData,
                 config.dev.secrets.jwt_token_secret as jwt.Secret
         );
 
+        logger.info(`TOKEN ${token}`);
         res.send(token);
 };
 
