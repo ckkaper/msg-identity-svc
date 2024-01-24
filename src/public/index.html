@@ -136,8 +136,7 @@
                                                         location.href = `http://localhost:${3000}/auth/callback/?code=${authorizationCode}&redirect_uri=${redirectUri}`;
                                                 },
                                                 error: (err) => {
-                                                        console.log("error");
-                                                        console.log(err);
+                                                        logger.error("error", err);
                                                         alert("Failed login");
                                                 },
                                                 dataType: "json",
