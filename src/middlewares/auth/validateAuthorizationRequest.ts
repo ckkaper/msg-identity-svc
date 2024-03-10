@@ -9,7 +9,7 @@ const validateAuthorizationRequest = async (
         res: Response,
         next: NextFunction
 ) => {
-        logger.info("VALIDATE AUTHORIZATION REQUEST MIDDLEWARE");
+        logger.info("validateAuthorizationRequest: entry");
         const response_type = req.query.response_type?.toString();
         const clientId = req.query.client_id?.toString();
         const scopes = req.query.scope?.toString();
@@ -31,7 +31,7 @@ const validateAuthorizationRequest = async (
         ) {
                 next();
         } else {
-                logger.error("failed to validate authorization request");
+                logger.error("validateAuthorizatioNRequest: failed to validate authorization request");
                 res.send("BadRequest: Invalid authorization request");
         }
 };
@@ -40,7 +40,7 @@ function validateResponseType(response_type?: string): boolean {
         if (response_type === "code") {
                 return true;
         }
-        logger.error("Not supported response type");
+        logger.error("validateAuthorizationRequest: Not supported response type");
         return false;
 }
 

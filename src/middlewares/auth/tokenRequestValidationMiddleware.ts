@@ -15,7 +15,7 @@ const tokenRequestValidationMiddleware = async (
         res: Response,
         next: NextFunction
 ) => {
-        logger.info("VALIDATE TOKEN REQUEST MIDDLEWARE");
+        logger.info("tokenRequestValidationMiddleware:  entry");
 
         // Client authentication
         const clientId = req.body?.clientId;
@@ -23,20 +23,20 @@ const tokenRequestValidationMiddleware = async (
         const authorizationCode = req.query?.code;
 
         if (authorizationCode == null) {
-                logger.info("authorization code was not provided");
+                logger.info("tokenRequestValidationMiddleware: authorization code was not provided");
                 next();
                 return;
         }
 
         if (clientId == null || clientSecret == null) {
-                logger.info("clientId or clientSecret were not provided");
+                logger.info("tokenRequestValidationMiddleware: clientId or clientSecret were not provided");
                 next();
                 return;
         }
 
         const clientExists = await clientsService.clientExists(clientId);
         if (!clientExists) {
-                logger.info("client does not exist");
+                logger.info("tokenRequestValidationMiddleware: client does not exist");
                 next();
                 return;
         }
@@ -48,12 +48,12 @@ const tokenRequestValidationMiddleware = async (
                         registeredClient.secret == clientSecret
                 )
         ) {
-                logger.info("fail to authenticate client");
+                logger.info("tokenRequesValidationMiddleware: fail to authenticate client");
                 next();
                 return;
         }
 
-        logger.info(`AUTHORIZATION CODE ${authorizationCode}`);
+        logger.info(`tokenRequestValidationMiddleware: AUTHORIZATION CODE ${authorizationCode}`);
 
         const authenticationEvent =
                 await authenticationEventService.getAuthenticationEventByAuthorizationCode(
@@ -62,7 +62,7 @@ const tokenRequestValidationMiddleware = async (
 
         if (authenticationEvent == null) {
                 logger.info(
-                        "authenticationEvent was not found by authorization_code"
+                        "tokenRequestValidationMiddleware: authenticationEvent was not found by authorization_code"
                 );
                 next();
                 return;
@@ -75,7 +75,7 @@ const tokenRequestValidationMiddleware = async (
                 config.dev.secrets.jwt_token_secret as jwt.Secret
         );
 
-        logger.info(`TOKEN ${token}`);
+        logger.info(`tokenRequestValidationMiddleware: TOKEN ${token}`);
         res.send(token);
 };
 
