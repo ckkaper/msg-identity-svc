@@ -55,16 +55,20 @@ const tokenRequestValidationMiddleware = async (
 
         logger.info(`AUTHORIZATION CODE ${authorizationCode}`);
 
-        const authenticationEvent = await authenticationEventService.
-                                        getAuthenticationEventByAuthorizationCode(authorizationCode.toString());
+        const authenticationEvent =
+                await authenticationEventService.getAuthenticationEventByAuthorizationCode(
+                        authorizationCode.toString()
+                );
 
         if (authenticationEvent == null) {
-                logger.info("authenticationEvent was not found by authorization_code");
+                logger.info(
+                        "authenticationEvent was not found by authorization_code"
+                );
                 next();
                 return;
         }
 
-        const tokenData = tokenService.createToken(authenticationEvent)
+        const tokenData = tokenService.createToken(authenticationEvent);
 
         const token = jwt.sign(
                 tokenData,

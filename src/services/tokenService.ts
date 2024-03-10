@@ -6,23 +6,21 @@ import UsersService from "./usersService";
 
 const usersService = new UsersService();
 
-
 class TokenService {
+        public createToken(authenticationEvent: IAuthenticationEventEntity) {
+                const userInfo = usersService.getUserByUserName(
+                        authenticationEvent.username
+                );
 
-        public createToken(
-            authenticationEvent: IAuthenticationEventEntity
-        ) {
-            const userInfo = usersService.getUserByUserName(authenticationEvent.username)
-
-            return  {
-                iss: "http://localhost:3001",
-                sub: userInfo.sub,
-                aud: {
-                    clientId: authenticationEvent.clientId                    
-                },
-                exp: 1700532663,
-                iat: new Date().getTime()
-            }
+                return {
+                        iss: "http://localhost:3001",
+                        sub: userInfo.sub,
+                        aud: {
+                                clientId: authenticationEvent.clientId,
+                        },
+                        exp: 1700532663,
+                        iat: new Date().getTime(),
+                };
         }
 }
 

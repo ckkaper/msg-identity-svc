@@ -44,7 +44,7 @@ Coverage report output: ./coverage/index.html
 ```
 docker build -t identity-svc .
 
-docker run -p 127.0.0.1:3000:3000 --name identity-svc identity-svc
+docker run --name identity-svc -p 127.0.0.1:3001:3001 --name identity-svc identity-svc
 ```
 
 ## TODO: How to Use

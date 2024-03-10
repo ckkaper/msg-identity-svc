@@ -23,22 +23,31 @@ class AuthenticationService {
                         return null;
                 }
 
-
                 if (user.username == username && user.password == password) {
-
-                    const authorizationCode = await authorizationCodeService.createAuthorizationCode();
-                    await authorizationCodeService.addAuthorizationCode(clientId, authorizationCode);
-                    const authenticationTimestamp = new Date().getTime().toString();
-                    authenticationEventService.createAuthenticationEvent(user.sub, username, clientId, authorizationCode)
+                        const authorizationCode =
+                                await authorizationCodeService.createAuthorizationCode();
+                        await authorizationCodeService.addAuthorizationCode(
+                                clientId,
+                                authorizationCode
+                        );
+                        const authenticationTimestamp = new Date()
+                                .getTime()
+                                .toString();
+                        authenticationEventService.createAuthenticationEvent(
+                                user.sub,
+                                username,
+                                clientId,
+                                authorizationCode
+                        );
 
                         return {
-                            id: user.sub + authenticationTimestamp,
-                            sub: user.sub,
-                            username: user.username,
-                            clientId,
-                            authorization_code: authorizationCode,
-                            created_at: authenticationTimestamp,
-                            result: true 
+                                id: user.sub + authenticationTimestamp,
+                                sub: user.sub,
+                                username: user.username,
+                                clientId,
+                                authorization_code: authorizationCode,
+                                created_at: authenticationTimestamp,
+                                result: true,
                         };
                 }
 

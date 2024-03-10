@@ -4,7 +4,7 @@ import IRepositoryStrategy from "../repositories/interfaces/IRepositoryStrategy"
 import { logger } from "../config/logger";
 import { AuthorizationCodeRepository } from "../repositories/authorizationCodeRepository";
 import IAuthorizationCodeEntity from "../repositories/Entities/authorizationCodeEntity";
-import  * as cryptoUtils from "../utils/cryptoUtils";
+import * as cryptoUtils from "../utils/cryptoUtils";
 
 class AuthorizationCodeService {
         private repository: AuthorizationCodeRepository<IAuthorizationCodeEntity>;

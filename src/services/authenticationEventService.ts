@@ -29,7 +29,9 @@ class AuthenticationEventService {
                 clientId: string,
                 authorizationCode: string
         ) {
-            logger.info(`creating authenticationEvent for user ${username}`)
+                logger.info(
+                        `creating authenticationEvent for user ${username}`
+                );
                 this.repository.add({
                         authorization_code: authorizationCode,
                         sub: username,
@@ -41,17 +43,20 @@ class AuthenticationEventService {
                 });
         }
 
-        public getAuthenticationEventByAuthorizationCode(authorizationCode: string): IAuthenticationEventEntity | null {
-            const authenticationEvent = this.repository.getAuthenticationEventByAuthorizationCode(
-                        authorizationCode
-                );
-            
-            if (authenticationEvent == null) {
-                logger.error('No authorization code was found');
-                return null;
-            }
+        public getAuthenticationEventByAuthorizationCode(
+                authorizationCode: string
+        ): IAuthenticationEventEntity | null {
+                const authenticationEvent =
+                        this.repository.getAuthenticationEventByAuthorizationCode(
+                                authorizationCode
+                        );
 
-            return authenticationEvent;
+                if (authenticationEvent == null) {
+                        logger.error("No authorization code was found");
+                        return null;
+                }
+
+                return authenticationEvent;
         }
 }
 

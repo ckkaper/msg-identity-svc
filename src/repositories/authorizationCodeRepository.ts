@@ -25,7 +25,9 @@ export class AuthorizationCodeRepository<
                 authCodeEntry: AuthorizationCodeEntityType
         ): boolean {
                 logger.info(
-                        `DATA: storing authorizationCode: AuthorizationCode: ${JSON.stringify(authCodeEntry)}`
+                        `DATA: storing authorizationCode: AuthorizationCode: ${JSON.stringify(
+                                authCodeEntry
+                        )}`
                 );
                 return this.strategy.add(authCodeEntry);
         }

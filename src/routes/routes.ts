@@ -16,10 +16,8 @@ router.get(
 router.post("/token", tokenRequestValidationMiddleware);
 
 router.get("/login", loginPageMiddleware);
-
 router.post("/login", loginPageMiddleware);
 
-router.get("/consent");
 router.get("/test", testMiddleware);
 
 export default router;
