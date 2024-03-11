@@ -23,20 +23,26 @@ const tokenRequestValidationMiddleware = async (
         const authorizationCode = req.query?.code;
 
         if (authorizationCode == null) {
-                logger.info("tokenRequestValidationMiddleware: authorization code was not provided");
+                logger.info(
+                        "tokenRequestValidationMiddleware: authorization code was not provided"
+                );
                 next();
                 return;
         }
 
         if (clientId == null || clientSecret == null) {
-                logger.info("tokenRequestValidationMiddleware: clientId or clientSecret were not provided");
+                logger.info(
+                        "tokenRequestValidationMiddleware: clientId or clientSecret were not provided"
+                );
                 next();
                 return;
         }
 
         const clientExists = await clientsService.clientExists(clientId);
         if (!clientExists) {
-                logger.info("tokenRequestValidationMiddleware: client does not exist");
+                logger.info(
+                        "tokenRequestValidationMiddleware: client does not exist"
+                );
                 next();
                 return;
         }
@@ -48,12 +54,16 @@ const tokenRequestValidationMiddleware = async (
                         registeredClient.secret == clientSecret
                 )
         ) {
-                logger.info("tokenRequesValidationMiddleware: fail to authenticate client");
+                logger.info(
+                        "tokenRequesValidationMiddleware: fail to authenticate client"
+                );
                 next();
                 return;
         }
 
-        logger.info(`tokenRequestValidationMiddleware: AUTHORIZATION CODE ${authorizationCode}`);
+        logger.info(
+                `tokenRequestValidationMiddleware: AUTHORIZATION CODE ${authorizationCode}`
+        );
 
         const authenticationEvent =
                 await authenticationEventService.getAuthenticationEventByAuthorizationCode(

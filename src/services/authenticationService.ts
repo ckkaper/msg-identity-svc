@@ -15,12 +15,16 @@ class AuthenticationService {
                 username: string,
                 password: string
         ): Promise<AuthenticationEventEntityType | null> {
-            logger.info(`AuthenticationService: Retrieving user: ${username}`)
+                logger.info(
+                        `AuthenticationService: Retrieving user: ${username}`
+                );
                 const user = usersService.getUserByUserName(username);
 
                 logger.info(user);
                 if (user == null) {
-                        logger.error(`AuthenticationService: unable to retrieve user ${username}`);
+                        logger.error(
+                                `AuthenticationService: unable to retrieve user ${username}`
+                        );
                         return null;
                 }
 
@@ -35,7 +39,9 @@ class AuthenticationService {
                                 .getTime()
                                 .toString();
 
-                        logger.info('AuthenticationService: creating authentication event');
+                        logger.info(
+                                "AuthenticationService: creating authentication event"
+                        );
                         authenticationEventService.createAuthenticationEvent(
                                 user.sub,
                                 username,
@@ -54,7 +60,9 @@ class AuthenticationService {
                         };
                 }
 
-                logger.info(`AuthenticationService: Failed to authenticate: ${username}`);
+                logger.info(
+                        `AuthenticationService: Failed to authenticate: ${username}`
+                );
                 return null;
         }
 }

@@ -15,14 +15,19 @@ const checkIfUserIsLoggedInMiddleware = (
         const redirect_uri = req.query.redirect_uri?.toString();
 
         if (clientId == null) {
-            logger.error('ClientId not provided');
-            res.send("Bad Request: clientId not provided");
+                logger.error("ClientId not provided");
+                res.send("Bad Request: clientId not provided");
         }
 
-        logger.info('checkIfUserIsLoggedInMiddleware: Redirecting to localhost');
-        res.redirect(
-                `http://localhost:${config.dev.port}/login?client_id=${clientId}&redirect_uri=${redirect_uri}`
-        );
+        if (sessionId == null) {
+                logger.info(
+                        "checkIfUserIsLoggedInMiddleware: Redirecting to localhost"
+                );
+                res.redirect(
+                        `http://localhost:${config.dev.port}/login?client_id=${clientId}&redirect_uri=${redirect_uri}`
+                );
+        }
+        next();
 };
 
 export default checkIfUserIsLoggedInMiddleware;

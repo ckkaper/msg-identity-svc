@@ -31,7 +31,9 @@ const validateAuthorizationRequest = async (
         ) {
                 next();
         } else {
-                logger.error("validateAuthorizatioNRequest: failed to validate authorization request");
+                logger.error(
+                        "validateAuthorizatioNRequest: failed to validate authorization request"
+                );
                 res.send("BadRequest: Invalid authorization request");
         }
 };
@@ -40,7 +42,9 @@ function validateResponseType(response_type?: string): boolean {
         if (response_type === "code") {
                 return true;
         }
-        logger.error("validateAuthorizationRequest: Not supported response type");
+        logger.error(
+                "validateAuthorizationRequest: Not supported response type"
+        );
         return false;
 }
 
@@ -66,14 +70,18 @@ async function validateRedirectUri(
 
 function validateClientId(clientId?: string): boolean {
         if (clientId == null) {
-                logger.error("ClientId not provided");
+                logger.error(
+                        "validateAuthorizationRequest: ClientId not provided"
+                );
                 return false;
         }
 
         var clientIdExists = clientsService.clientExists(clientId);
 
         if (!clientIdExists) {
-                logger.error("ClientId does not exist");
+                logger.error(
+                        "validateAuthorizationRequest: ClientId does not exist"
+                );
                 return false;
         }
 
@@ -84,7 +92,9 @@ function validateClientId(clientId?: string): boolean {
 
 function validateScopes(scopes?: string) {
         if (scopes == null) {
-                logger.error("Failed to validate scopes");
+                logger.error(
+                        "validateAuthorizationRequest: Failed to validate scopes"
+                );
                 return false;
         }
 

@@ -19,12 +19,11 @@ const loginPageMiddleware = async (
         const { username, password } = req.body;
         const clientId = req.query.client_id?.toString();
         const redirect_uri = req.query.redirect_uri?.toString();
-        console.log('USERNAME PASSWORD: ')
-        console.log(username)
-        console.log(password)
 
         if (clientId == null || redirect_uri == null) {
-            logger.error('LoginPageMiddleware: Redirectri or clientId not provided');
+                logger.error(
+                        "LoginPageMiddleware: Redirectri or clientId not provided"
+                );
                 return res.send(
                         "Bad Request: RedirectUri or clientId not provided"
                 );
@@ -39,18 +38,24 @@ const loginPageMiddleware = async (
                 );
 
         if (authenticationResult == null) {
-                logger.error("LoginPageMiddleware: Unable to get authentication result");
+                logger.error(
+                        "LoginPageMiddleware: Unable to get authentication result"
+                );
                 res.sendFile(path.resolve("./src/public/index.html"));
         }
 
         if (authenticationResult) {
-                logger.info("LoginPageMiddleware: successfully authenticated user");
+                logger.info(
+                        "LoginPageMiddleware: successfully authenticated user"
+                );
 
-                logger.info("LoginPageMiddleware: redirecting to RP auth callback");
+                logger.info(
+                        "LoginPageMiddleware: redirecting to RP auth callback"
+                );
                 return res.json(authenticationResult.authorization_code);
         }
 
-        logger.info('LoginPagMiddleware: render index.html')
+        logger.info("LoginPagMiddleware: render index.html");
         res.sendFile(path.resolve("./src/public/index.html"));
 };
 
