@@ -4,7 +4,7 @@ import { config } from "../config/config";
 import { FileStrategy } from "../repositories/strategies/fileStrategy";
 import { AuthenticationEventRepository } from "../repositories/authenticationEventRepository";
 
-const strategy = new FileStrategy(config.dev.authentication_event_data);
+const strategy = new FileStrategy(config.authentication_event_data);
 
 const authenticationEventRepository = new AuthenticationEventRepository(
         strategy

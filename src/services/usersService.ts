@@ -16,7 +16,7 @@ class UsersService {
         constructor(strategy?: IRepositoryStrategy<IUserEntity>) {
                 this.repositoryStrategy = strategy
                         ? strategy
-                        : new FileStrategy(config.dev.users_mock_data);
+                        : new FileStrategy(config.users_mock_data);
                 this.repository = new UsersRepository(this.repositoryStrategy);
         }
 

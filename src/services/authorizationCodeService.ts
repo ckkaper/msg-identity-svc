@@ -14,7 +14,7 @@ class AuthorizationCodeService {
         constructor(strategy?: IRepositoryStrategy<IAuthorizationCodeEntity>) {
                 this.repositoryStrategy = strategy
                         ? strategy
-                        : new FileStrategy(config.dev.authorization_code_data);
+                        : new FileStrategy(config.authorization_code_data);
                 this.repository = new AuthorizationCodeRepository(
                         this.repositoryStrategy
                 );

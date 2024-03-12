@@ -24,7 +24,7 @@ const checkIfUserIsLoggedInMiddleware = (
                         "checkIfUserIsLoggedInMiddleware: Redirecting to localhost"
                 );
                 res.redirect(
-                        `http://localhost:${config.dev.port}/login?client_id=${clientId}&redirect_uri=${redirect_uri}`
+                        `http://localhost:${config.port}/login?client_id=${clientId}&redirect_uri=${redirect_uri}`
                 );
         }
         next();

@@ -82,7 +82,7 @@ const tokenRequestValidationMiddleware = async (
 
         const token = jwt.sign(
                 tokenData,
-                config.dev.secrets.jwt_token_secret as jwt.Secret
+                config.secrets.jwt_token_secret as jwt.Secret
         );
 
         logger.info(`tokenRequestValidationMiddleware: TOKEN ${token}`);

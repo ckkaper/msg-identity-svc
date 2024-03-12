@@ -16,7 +16,7 @@ class AuthenticationEventService {
                 this.repositoryStrategy = strategy
                         ? strategy
                         : new FileStrategy(
-                                  config.dev.authentication_event_data
+                                  config.authentication_event_data
                           );
                 this.repository = new AuthenticationEventRepository(
                         this.repositoryStrategy

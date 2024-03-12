@@ -23,9 +23,9 @@ app.use(usersRouter);
 
 app.use(errorHandler);
 
-app.listen(config.dev.port, () => {
+app.listen(config.port, () => {
         logger.log(
                 "info",
-                `${config.dev.application_name} listening on port ${config.dev.port}`
+                `${config.application_name} listening on port ${config.port}`
         );
 });

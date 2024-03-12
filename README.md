@@ -2,7 +2,9 @@
 
 ## Summary
 
-A skeleton microservice part of a bigger microservices platform aiming to seamlesly and easly generate new services focused on business logic.
+Identity microservice aiming to mimic an OpenID Connect server: 
+
+    
 
 - What the project contains
 - How is structured
